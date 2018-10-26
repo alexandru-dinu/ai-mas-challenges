@@ -1,0 +1,28 @@
+- map gestures to app events
+- pipeline
+    - localization
+    - gesture recognition
+    - mapping gestures to app events
+- sdk:
+    - app exposes detected gestures -> it's up to another dev to use them
+
+
+algorithmic challenges
+    - noisy data
+    - robustness: contrast (lighting, night time) / scale (distance)
+    - tracking
+    - real-time
+
+development challenges
+    - os load (process)
+    - features
+    - data
+
+step-by-step plan
+
+
+Performance - the system either directly interacts with an application
+(e.g. volume control for VLC media player), or exposes some gesture events
+(e.g. SwipeLeft, RotateClockwise etc) allowing an end-user to map them to
+specific controls. At the end of the day we want to deliver a smooth experience,
+so, performance is a critical factor.
