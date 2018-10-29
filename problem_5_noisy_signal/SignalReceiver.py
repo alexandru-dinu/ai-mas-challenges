@@ -14,6 +14,7 @@ class SignalReceiver:
 		self.__real_values = [float(i) for i in f_real.readlines()]
 		self.__c_index = 0
 		self.__total_error = 0
+		self.r = self.__real_values
 
 	def get_value(self):
 		'''
@@ -81,6 +82,7 @@ if __name__ == "__main__":
 
 
 	s = 0
+	i = 0
 
 	while True:
 		x = sr.get_value()
@@ -88,17 +90,20 @@ if __name__ == "__main__":
 			break
 
 		buf = np.r_[buf[1:], [x]]
+		rr = np.r_[sr.r[i+1:bufsize+i], sr.r[bufsize+1]]
+		i += 1
 
-		# out = smooth(buf, wsize, window='flat')
-		# out = out[wsize//2:]
-		# out = out[:-wsize//2+1]``
+		out = smooth(buf, wsize, window='hanning')
+		out = out[wsize//2:]
+		out = out[:-wsize//2+1]
 		# print(out.size, buf.size)
 
 		# out = ff(buf, flat_filter(size=wsize))
-		out = np.convolve(buf, flat_filter(size=wsize), mode='same')
+		# out = np.convolve(buf, flat_filter(size=wsize), mode='same')
 
 		if True and s % 20 == 0:
 			plt.plot(out, 'g');
+			plt.plot(rr, 'r')
 			# plt.plot(buf, 'r');
 			plt.grid()
 			plt.show()
