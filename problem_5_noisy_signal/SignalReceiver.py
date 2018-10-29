@@ -69,7 +69,7 @@ if __name__ == "__main__":
 	# 	i_val = sr.get_value()
 	# print('Total error: ' + str(sr.get_error()))
 
-	bufsize = 1000
+	bufsize = 100
 	wsize = 31
 
 	buf = np.zeros((bufsize,))
